@@ -1,0 +1,35 @@
+
+<div *ngIf="movie" class="container mt-5">
+  <h2>{{ movie.title }}</h2>
+  <img [src]="movie.cover" class="img-fluid" alt="{{ movie.title }}">
+  <p>{{ movie.synopsis }}</p>
+  <p><strong>Año:</strong> {{ movie.year }}</p>
+  
+  <button class="btn btn-primary" routerLink="/movies">Regresar al Catálogo</button>
+  <button class="btn btn-warning ms-2" [routerLink]="['/edit-movie', movie.id]">Editar</button>
+  <button class="btn btn-danger ms-2" (click)="confirmDelete()">Eliminar</button>
+
+  <!-- Modal de confirmación para eliminar -->
+  <div *ngIf="showConfirm" class="modal fade show d-block" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Eliminación</h5>
+          <button type="button" class="close" (click)="cancelDelete()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>¿Está seguro que desea eliminar esta película?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="deleteMovie()">Sí</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelDelete()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
